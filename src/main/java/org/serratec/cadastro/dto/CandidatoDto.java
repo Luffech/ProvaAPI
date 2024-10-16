@@ -2,12 +2,12 @@ package org.serratec.cadastro.dto;
 
 import java.time.LocalDate;
 
-import org.serratec.cadastro.model.Cadastrar;
+import org.serratec.cadastro.model.Candidato;
 import org.serratec.cadastro.model.Escolaridade;
 import org.serratec.cadastro.model.Status;
 import org.serratec.cadastro.model.Vaga;
 
-public record CadastroDto(
+public record CandidatoDto(
 		Long id,
         String nome,
         String cpf,
@@ -17,8 +17,8 @@ public record CadastroDto(
         Status statusCurriculo) {
 	
 	
-	public Cadastrar toEntity() {
-		Cadastrar cadastrar = new Cadastrar();
+	public Candidato toEntity() {
+		Candidato cadastrar = new Candidato();
 		cadastrar.setId(this.id);
 		cadastrar.setNome(this.nome);
 		cadastrar.setCpf(this.cpf);
@@ -30,8 +30,8 @@ public record CadastroDto(
         
 	}
 	
-	public static CadastroDto toDto(Cadastrar cadastrar) {
-		return new CadastroDto( 
+	public static CandidatoDto toDto(Candidato cadastrar) {
+		return new CandidatoDto( 
 				cadastrar.getId(),
 				cadastrar.getNome(), 
 				cadastrar.getCpf(), 

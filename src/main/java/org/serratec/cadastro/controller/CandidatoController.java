@@ -3,9 +3,9 @@ package org.serratec.cadastro.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.serratec.cadastro.dto.CadastroDto;
+import org.serratec.cadastro.dto.CandidatoDto;
 import org.serratec.cadastro.model.Vaga;
-import org.serratec.cadastro.service.CadastroService;
+import org.serratec.cadastro.service.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cadastrar")
-public class CadastroController {
+public class CandidatoController {
 	@Autowired
-	private CadastroService servico;
+	private CandidatoService servico;
 
 	@GetMapping
-	public List<CadastroDto> obterTodos() {
+	public List<CandidatoDto> obterTodos() {
 		return servico.obterTodos();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<CadastroDto> obterPorId(@PathVariable Long id) {
-		Optional<CadastroDto> dto = servico.obterPorId(id);
+	public ResponseEntity<CandidatoDto> obterPorId(@PathVariable Long id) {
+		Optional<CandidatoDto> dto = servico.obterPorId(id);
 		if (!dto.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -41,7 +41,7 @@ public class CadastroController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public CadastroDto salvarCadastro(@RequestBody CadastroDto dto) {
+	public CandidatoDto salvarCadastro(@RequestBody CandidatoDto dto) {
 		return servico.salvarCadastro(dto);
 	}
 
@@ -54,8 +54,8 @@ public class CadastroController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<CadastroDto> alterarCadastro(@PathVariable Long id, @RequestBody CadastroDto dto) {
-		Optional<CadastroDto> cadastroAlterado = servico.alterarCadastro(id, dto);
+	public ResponseEntity<CandidatoDto> alterarCadastro(@PathVariable Long id, @RequestBody CandidatoDto dto) {
+		Optional<CandidatoDto> cadastroAlterado = servico.alterarCadastro(id, dto);
 		if (!cadastroAlterado.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -64,11 +64,11 @@ public class CadastroController {
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public List<CadastroDto> obterPorId(@PathVariable String nome) {
+	public List<CandidatoDto> obterPorId(@PathVariable String nome) {
 		return servico.buscarPorNome(nome);
 	}
 	@GetMapping("/vaga/{vaga}")
-	public List<CadastroDto> obterPorId(@PathVariable("vaga") Vaga vagaDesejada) {
+	public List<CandidatoDto> obterPorId(@PathVariable("vaga") Vaga vagaDesejada) {
 		return servico.buscarPorVaga(vagaDesejada);
 	}
 

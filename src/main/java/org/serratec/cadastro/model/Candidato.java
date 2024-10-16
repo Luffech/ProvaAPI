@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table( name = "cadastros")
-public class Cadastrar {
+public class Candidato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
